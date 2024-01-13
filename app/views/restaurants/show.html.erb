@@ -1,0 +1,9 @@
+Details of one restaurant
+
+<p> name ::: <%= @restaurant.name %> </p>
+<p> address ::: <%= @restaurant.address %> </p>
+<p> rating ::: <%= @restaurant.rating %> </p>
+
+<%= link_to("Back to all restaurants", restaurants_path ) %>
+<%= link_to("delete", delete_restaurant_path(@restaurant),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}) %>

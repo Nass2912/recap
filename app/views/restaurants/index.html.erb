@@ -1,0 +1,9 @@
+List of all restaurants
+
+<div>
+  <% @restaurants.each do |restaurant| %>
+    <%= restaurant.name%>
+  <% end %>
+</div>
+
+<%= link_to("create resto", new_restaurant_path) %>
