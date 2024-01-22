@@ -4,7 +4,12 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
+  def top
+    @restaurants = Restaurant.where(rating: 5)
+  end
+
   def show
+    @review = Review.new
   end
 
   def new
@@ -33,7 +38,7 @@ class RestaurantsController < ApplicationController
   private
   def strong_params
     params.require(:restaurant).permit(:name, :address, :rating)
-  end:
+  end
 
   def find_restaurant
     id = params[:id]

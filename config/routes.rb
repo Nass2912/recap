@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   root to: "pages#about"
   get "/contact", to: "pages#contact"
-  resources :restaurants
+  resources :restaurants do
+    collection do
+      get :top
+    end
+    resources :reviews, only: [:create]
+  end
+  resources :reviews, only: [:destroy]
+
 
   # get "/restaurants", to: "restaurants#index"
   # get "/restaurants/new", to: "restaurants#new"
