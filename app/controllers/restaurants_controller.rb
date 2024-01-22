@@ -1,15 +1,19 @@
 class RestaurantsController < ApplicationController
+  before_action :find_restaurant, only:[:update, :edit, :show, :destroy ]
   def index
     @restaurants = Restaurant.all
   end
 
   def show
-    id = params[:id]
-    @restaurant = Restaurant.find(id)
   end
 
   def new
     @restaurant = Restaurant.new
+  end
+
+  def update
+    @restaurant.update(strong_params)
+    redirect_to restaurant_path(@restaurant)
   end
 
   def create
@@ -19,12 +23,9 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    id = params[:id]
-    @restaurant = Restaurant.find(id)
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
     redirect_to restaurants_path
   end
@@ -32,5 +33,10 @@ class RestaurantsController < ApplicationController
   private
   def strong_params
     params.require(:restaurant).permit(:name, :address, :rating)
+  end:
+
+  def find_restaurant
+    id = params[:id]
+    @restaurant = Restaurant.find(id)
   end
 end

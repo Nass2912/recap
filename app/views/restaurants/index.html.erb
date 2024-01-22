@@ -2,7 +2,7 @@ List of all restaurants
 
 <div>
   <% @restaurants.each do |restaurant| %>
-    <%= restaurant.name%>
+    <%= link_to(restaurant.name, restaurant_path(restaurant)) %>
   <% end %>
 </div>
 
